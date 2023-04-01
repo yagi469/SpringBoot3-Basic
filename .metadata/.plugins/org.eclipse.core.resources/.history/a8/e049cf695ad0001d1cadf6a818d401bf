@@ -52,10 +52,8 @@ type="text/css">
 		</div>
 		<div th:if="${#fields.hasErrors('deadlineFrom')}" th:errors="*{deadlineFrom}"
 		th:errorclass="red"></div>
-		<div th:if="${#fields.hasErrors('deadlineTo')}" th:errors="*{deadlineTo}"
+		<div th:if="${#fields.hasErrors('deadlineFrom')}" th:errors="*{deadlineFrom}"
 		th:errorclass="red"></div>
-		<hr>
-		<button type="submit" th:formaction="@{/todo/create/form}">新規追加</button>
 	</form>
 	<!-- Todolist4で追加 開始 --> 
 	<table border="1">

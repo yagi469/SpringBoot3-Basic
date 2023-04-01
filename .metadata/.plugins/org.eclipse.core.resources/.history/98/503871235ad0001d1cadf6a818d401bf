@@ -43,19 +43,9 @@ type="text/css">
 						<input type="text" name="deadlineTo" th:value="*{deadlineTo}" size=10
 						placeholder="yyyy-mm-dd">
 					</td>
-					<td>
-						<input type="checkbox" value="Y" th:field="*{done}">完了
-					</td>
 				</tr>
 			</table>
-			<button type="submit" th:formaction="@{/todo/query}">検索</button>
 		</div>
-		<div th:if="${#fields.hasErrors('deadlineFrom')}" th:errors="*{deadlineFrom}"
-		th:errorclass="red"></div>
-		<div th:if="${#fields.hasErrors('deadlineTo')}" th:errors="*{deadlineTo}"
-		th:errorclass="red"></div>
-		<hr>
-		<button type="submit" th:formaction="@{/todo/create/form}">新規追加</button>
 	</form>
 	<!-- Todolist4で追加 開始 --> 
 	<table border="1">
