@@ -1,0 +1,6 @@
+package com.example.todolist.form;
+
+@Data
+public class TodoData {
+
+}

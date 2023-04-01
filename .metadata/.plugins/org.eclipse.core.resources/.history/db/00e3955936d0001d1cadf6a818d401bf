@@ -1,0 +1,14 @@
+package com.example.todolist.service;
+
+import org.springframework.validation.BindingResult;
+
+import com.example.todolist.form.TodoData;
+
+public class TodoService {
+
+	public boolean isValid(TodoData todoData, BindingResult result) {
+		// TODO 自動生成されたメソッド・スタブ
+		return false;
+	}
+
+}
