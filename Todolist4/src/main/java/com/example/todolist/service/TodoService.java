@@ -65,9 +65,41 @@ public class TodoService {
 		return ans;
 	}
 
+	// Todolist4で追加
 	public boolean isValid(TodoQuery todoQuery, BindingResult result) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		boolean ans = true;
+		
+		// 期限：開始の形式をチェック
+		String date = todoQuery.getDeadlineFrom();
+		if (!date.equals("")) {
+			try {
+				LocalDate.parse(date);
+			} catch (DateTimeException e) {
+				// parseできない場合
+				FieldError fieldError = new FieldError(
+						result.getObjectName(),
+						"deadlineFrom",
+						"期限：開始を入力するときはyyyy-mm-dd形式で入力してください");
+				result.addError(fieldError);
+				ans = false;
+			}
+		}
+		// 期限：終了の形式をチェック
+		date = todoQuery.getDeadlineTo();
+		if (!date.equals("")) {
+			try {
+				LocalDate.parse(date);
+			} catch (DateTimeException e) {
+				// parseできない場合
+				FieldError fieldError = new FieldError(
+						result.getObjectName(),
+						"deadlineTo",
+						"期限：終了を入力するときはyyyy-mm-dd形式で入力してください");
+				result.addError(fieldError);
+				ans = false;
+			}
+		}
+		return ans;
 	}
 
 	public List<Todo> doQuery(TodoQuery todoQuery) {

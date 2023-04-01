@@ -922,3 +922,5 @@
 2023-04-01 16:14:30,519 [Worker-125: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\workspace\Todolist4\src\test\resources
 2023-04-01 16:15:39,972 [Worker-123: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
 2023-04-01 16:15:39,976 [Worker-123: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources
+2023-04-01 16:15:39,978 [Worker-123: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\workspace\Todolist4\src\test\resources
+2023-04-01 16:27:17,438 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
