@@ -70,7 +70,7 @@
 			<button type="submit" th:formaction="@{/todo/cancel}">キャンセル</button>
 		</div>
 		<div th:unless="${session.mode == 'update'}">
-			<button type="submit" th:formaction="@{/todo/create/do}">登録</button>
+			<button type="submit" th:formaction="@{/todo/create}">登録</button>
 			<button type="submit" th:formaction="@{/todo/cancel}">キャンセル</button>
 		</div>
 		<!-- TodoList3で変更 終了 -->
