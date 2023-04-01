@@ -2,15 +2,12 @@ package com.example.todolist.service;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import com.example.todolist.entity.Todo;
 import com.example.todolist.form.TodoData;
-import com.example.todolist.form.TodoQuery;
 
 @Service
 public class TodoService {
@@ -63,15 +60,5 @@ public class TodoService {
 			}
 		}
 		return ans;
-	}
-
-	public boolean isValid(TodoQuery todoQuery, BindingResult result) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
-
-	public List<Todo> doQuery(TodoQuery todoQuery) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
 	}
 }

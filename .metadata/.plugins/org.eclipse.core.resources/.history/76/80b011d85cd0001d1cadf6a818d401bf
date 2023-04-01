@@ -101,18 +101,4 @@ public class TodoListController {
 		todoRepository.deleteById(todoData.getId());
 		return "redirect:/todo";
 	}
-	
-	@PostMapping("/todo/query")
-	public ModelAndView queryTodo(@ModelAttribute TodoQuery todoQuery,
-			BindingResult result, ModelAndView mv) {
-		mv.setViewName("todoList");
-		List<Todo> todoList = null;
-		if (todoService.isValid(todoQuery, result)) {
-			// エラーが無ければ検索
-			todoList = todoService.doQuery(todoQuery);
-		}
-		// mv.addObject("todoQuery", todoQuery);
-		mv.addObject("todoList", todoList);
-		return mv;
-	}
 }

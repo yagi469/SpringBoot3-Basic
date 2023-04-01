@@ -34,7 +34,7 @@ public class TodoListController {
 		mv.setViewName("todoList");
 		List<Todo> todoList = todoRepository.findAll();
 		mv.addObject("todoList", todoList);
-		mv.addObject("todoQuery", new TodoQuery()); // Todolist4で追加
+		mv.addObject("todoQuery", new TodoQuery()) // Todolist4で追加
 		return mv;
 	}
 	
@@ -100,19 +100,5 @@ public class TodoListController {
 	public String deleteTodo(@ModelAttribute TodoData todoData) {
 		todoRepository.deleteById(todoData.getId());
 		return "redirect:/todo";
-	}
-	
-	@PostMapping("/todo/query")
-	public ModelAndView queryTodo(@ModelAttribute TodoQuery todoQuery,
-			BindingResult result, ModelAndView mv) {
-		mv.setViewName("todoList");
-		List<Todo> todoList = null;
-		if (todoService.isValid(todoQuery, result)) {
-			// エラーが無ければ検索
-			todoList = todoService.doQuery(todoQuery);
-		}
-		// mv.addObject("todoQuery", todoQuery);
-		mv.addObject("todoList", todoList);
-		return mv;
 	}
 }
