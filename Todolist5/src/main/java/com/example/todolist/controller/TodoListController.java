@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.todolist.dao.TodoDaoImpl;
 import com.example.todolist.entity.Todo;
 import com.example.todolist.form.TodoData;
 import com.example.todolist.form.TodoQuery;
 import com.example.todolist.repository.TodoRepository;
 import com.example.todolist.service.TodoService;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 
@@ -27,6 +31,15 @@ public class TodoListController {
 	private final TodoRepository todoRepository;
 	private final TodoService todoService;
 	private final HttpSession session;
+	// Todolist5で追加
+	@PersistenceContext
+	private EntityManager entityManager;
+	TodoDaoImpl todoDaoImpl;
+	
+	@PostConstruct
+	public void init() {
+		todoDaoImpl = new TodoDaoImpl(entityManager);
+	}
 	
 	@GetMapping("/todo")
 	public ModelAndView showTodoList(ModelAndView mv) {
@@ -102,14 +115,18 @@ public class TodoListController {
 		return "redirect:/todo";
 	}
 	
+	// フォームに入力された条件でToDoを検索(Todolist4で追加、Todolist5で変更)
 	@PostMapping("/todo/query")
 	public ModelAndView queryTodo(@ModelAttribute TodoQuery todoQuery,
 			BindingResult result, ModelAndView mv) {
 		mv.setViewName("todoList");
 		List<Todo> todoList = null;
 		if (todoService.isValid(todoQuery, result)) {
-			// エラーが無ければ検索
-			todoList = todoService.doQuery(todoQuery);
+			// エラーがなければ検索
+			// todoList = todoService.doQuery(todoQuery);
+			// ↓
+			// JPQLによる検索
+			todoList = todoDaoImpl.findByJPQL(todoQuery);
 		}
 		// mv.addObject("todoQuery", todoQuery);
 		mv.addObject("todoList", todoList);

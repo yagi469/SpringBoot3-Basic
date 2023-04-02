@@ -1010,3 +1010,9 @@
 2023-04-02 11:46:59,315 [Worker-166: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources
 2023-04-02 11:46:59,319 [Worker-166: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\workspace\Todolist5\src\test\resources
 2023-04-02 11:47:38,695 [Worker-162: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-04-02 11:47:38,701 [Worker-162: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources
+2023-04-02 11:47:38,704 [Worker-162: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\workspace\Todolist5\src\test\resources
+2023-04-02 11:56:01,024 [Worker-171: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-04-02 11:56:01,030 [Worker-171: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources
+2023-04-02 11:56:01,034 [Worker-171: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\workspace\Todolist5\src\test\resources
+2023-04-02 11:57:33,476 [Worker-167: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
