@@ -8,13 +8,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import com.example.todolist.common.Utils;
 import com.example.todolist.entity.Todo;
 import com.example.todolist.form.TodoData;
 import com.example.todolist.form.TodoQuery;
+import com.example.todolist.repository.TodoRepository;
+
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class TodoService {
 
+	private final TodoRepository todoRepository;
+	
 	public boolean isValid(TodoData todoData, BindingResult result) {
 		boolean ans = true;
 		
@@ -102,8 +109,45 @@ public class TodoService {
 		return ans;
 	}
 
+	// Todolist4で追加
 	public List<Todo> doQuery(TodoQuery todoQuery) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		List<Todo> todoList = null;
+		if (todoQuery.getTitle().length() > 0) {
+			// タイトルで検索
+			todoList = todoRepository.findByTitleLike("%" + todoQuery.getTitle() + "%");
+			
+		} else if (todoQuery.getImportance() != null && todoQuery.getImportance() != -1) {
+			// 重要度で検索
+			todoList = todoRepository.findByImportance(todoQuery.getImportance());
+			
+		} else if (todoQuery.getUrgency() != null && todoQuery.getUrgency() != -1) {
+			// 緊急度で検索
+			todoList = todoRepository.findByUrgency(todoQuery.getUrgency());
+			
+		} else if (!todoQuery.getDeadlineFrom().equals("") && todoQuery.getDeadlineTo().equals("")) {
+			// 期限 開始～
+			todoList = todoRepository.findByDeadlineGreaterThanEqualOrderByDeadlineAsc(
+					Utils.str2date(todoQuery.getDeadlineFrom()));
+					
+		} else if (todoQuery.getDeadlineFrom().equals("") && !todoQuery.getDeadlineTo().equals("")) {
+			// 期限 ～終了
+			todoList = todoRepository.findByDeadlineLessThanEqualOrderByDeadlineAsc(
+					Utils.str2date(todoQuery.getDeadlineTo()));
+			
+		} else if (!todoQuery.getDeadlineFrom().equals("") && !todoQuery.getDeadlineTo().equals("")) {
+			// 期限 開始～終了
+			todoList = todoRepository.findByDeadlineBetweenOrderByDeadlineAsc(
+					Utils.str2date(todoQuery.getDeadlineFrom()), Utils.str2date(todoQuery.getDeadlineTo()));
+			
+		} else if (todoQuery.getDone() != null && todoQuery.getDone().equals("Y")) {
+			// 完了で検索
+			todoList = todoRepository.findByDone("Y");
+			
+		} else {
+			// 入力条件が無ければ全件検索
+			todoList = todoRepository.findAll();
+		}
+		
+		return todoList;
 	}
 }
