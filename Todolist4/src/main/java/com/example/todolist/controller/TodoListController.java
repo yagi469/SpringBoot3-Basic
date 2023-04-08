@@ -38,7 +38,7 @@ public class TodoListController {
 		return mv;
 	}
 	
-	@GetMapping("/todo/create")
+	@PostMapping("/todo/create/form")
 	public ModelAndView createTodo(ModelAndView mv) {
 		mv.setViewName("todoForm");
 		mv.addObject("todoData", new TodoData());
@@ -47,7 +47,7 @@ public class TodoListController {
 	}
 	
 	//ToDo追加処理(TodoList2で追加したものをTodolist3で改善)
-	@PostMapping("/todo/create")
+	@PostMapping("/todo/create/do")
 	public String createTodo(@ModelAttribute @Validated TodoData todoData, 
 			BindingResult result, ModelAndView mv) {
 		// エラーチェック

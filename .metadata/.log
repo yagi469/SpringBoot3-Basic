@@ -3615,3 +3615,6 @@ org.eclipse.swt.SWTException: Invalid thread access
 
 !ENTRY org.eclipse.jdt.apt.pluggable.core 1 1 2023-04-02 13:05:31.999
 !MESSAGE Hibernate JPA 2 Static-Metamodel Generator 6.1.5.Final
+
+!ENTRY org.eclipse.jdt.apt.pluggable.core 1 1 2023-04-08 18:15:20.527
+!MESSAGE Hibernate JPA 2 Static-Metamodel Generator 6.1.5.Final
