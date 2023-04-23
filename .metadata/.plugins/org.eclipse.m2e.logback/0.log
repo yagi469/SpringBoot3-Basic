@@ -1257,3 +1257,4 @@
 2023-04-23 16:30:13,195 [Worker-50: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\SpringBoot3-Basic\Todolist7\src\test\resources
 2023-04-23 16:40:36,762 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
 2023-04-23 16:40:36,762 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-04-23 16:40:36,766 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\sts-4.17.2.RELEASE\SpringBoot3-Basic\Todolist7\src\test\resources
