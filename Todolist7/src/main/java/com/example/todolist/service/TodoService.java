@@ -22,7 +22,7 @@ public class TodoService {
 
 	private final TodoRepository todoRepository;
 	
-	public boolean isValid(TodoData todoData, BindingResult result) {
+	public boolean isValid(TodoData todoData, BindingResult result, boolean isCreate) {
 		boolean ans = true;
 		
 		// 件名が全角スペースだけで構成されていたらエラー
@@ -52,13 +52,16 @@ public class TodoService {
 			LocalDate deadlineDate = null;
 			try {
 				deadlineDate = LocalDate.parse(deadline);
-				if (deadlineDate.isBefore(tody)) {
-					FieldError fieldError = new FieldError(
-							result.getObjectName(),
-							"deadline",
-							"期限を設定するときは今日以降にしてください");
-					result.addError(fieldError);
-					ans = false;
+				// 過去日付チェックは新規登録の場合のみ
+				if (isCreate) {
+					if (deadlineDate.isBefore(tody)) {
+						FieldError fieldError = new FieldError(
+								result.getObjectName(),
+								"deadline",
+								"期限を設定するときは今日以降にしてください");
+						result.addError(fieldError);
+						ans = false;
+					}
 				}
 			} catch (DateTimeException e) {
 				FieldError fieldError = new FieldError(

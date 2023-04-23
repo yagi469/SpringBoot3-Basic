@@ -68,7 +68,7 @@ public class TodoListController {
 	public String createTodo(@ModelAttribute @Validated TodoData todoData, 
 			BindingResult result, ModelAndView mv) {
 		// エラーチェック
-		boolean isValid = todoService.isValid(todoData, result);
+		boolean isValid = todoService.isValid(todoData, result, true);
 		if (!result.hasErrors() && isValid) {
 			// エラーなし
 			Todo todo = todoData.toEntity();
@@ -100,7 +100,7 @@ public class TodoListController {
 	public String updateTodo(@ModelAttribute @Validated TodoData todoData,
 			BindingResult result, Model model) {
 		// エラーチェック
-		boolean isValid = todoService.isValid(todoData, result);
+		boolean isValid = todoService.isValid(todoData, result, false);
 		if (!result.hasErrors() && isValid) {
 			// エラーなし
 			Todo todo = todoData.toEntity();
