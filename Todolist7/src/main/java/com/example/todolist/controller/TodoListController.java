@@ -45,13 +45,32 @@ public class TodoListController {
 	@GetMapping("/todo")
 	public ModelAndView showTodoList(ModelAndView mv, 
 			@PageableDefault(page=0, size=5, sort="id") Pageable pageable) {
+		// sessionから前回の検索条件を取得
+		TodoQuery todoQuery = (TodoQuery)session.getAttribute("todoQuery");
+		if (todoQuery == null) {
+			// なければ初期値を使う
+			todoQuery = new TodoQuery();
+			// セッションへ保存
+			session.setAttribute("todoQuery", todoQuery);
+		}
+		
+		// sessionから前回のpageableを取得
+		Pageable prevPageable = (Pageable)session.getAttribute("prevPageable");
+		if (prevPageable == null) {
+			// なければ@PageableDefaultを使う
+			prevPageable = pageable;
+			// セッションへ保存
+			session.setAttribute("prevPageable", prevPageable);
+		}
+		
 		// 一覧を検索して表示する
 		mv.setViewName("todoList");
-		Page<Todo> todoPage = todoRepository.findAll(pageable);
-		mv.addObject("todoQuery", new TodoQuery()); // Todolist4で追加
+		
+		Page<Todo> todoPage = todoDaoImpl.findByCriteria(todoQuery, prevPageable);
+		mv.addObject("todoQuery", todoQuery);
 		mv.addObject("todoPage", todoPage);
 		mv.addObject("todoList", todoPage.getContent());
-		session.setAttribute("todoQuery", new TodoQuery());
+		
 		return mv;
 	}
 	
@@ -147,9 +166,13 @@ public class TodoListController {
 		return mv;
 	}
 	
+	// ページリンク押下時
 	@GetMapping("/todo/query")
 	public ModelAndView queryTodo(@PageableDefault(page = 0, size = 5) Pageable pageable,
 			ModelAndView mv) {
+		// 現在のページ位置を保存
+		session.setAttribute("prevPageable", pageable);
+		
 		mv.setViewName("todoList");
 		
 		// sessionに保存されている条件で検索
